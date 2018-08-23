@@ -7,8 +7,9 @@ const _filter = {'pwd':0,'__v':0}
 
 
 Router.get('/list',(req,res)=>{
- User.find({},(err,doc)=>{
-   return res.json(doc)
+  const {type} = req.query
+  User.find({type},(err,doc)=>{
+   return res.json({code:0,data:doc})
  })
 })
 Router.post('/login',(req,res)=>{
@@ -19,6 +20,20 @@ Router.post('/login',(req,res)=>{
     }
     res.cookie('userId',doc._id)
     return res.json({code:0,data:doc})
+  })
+})
+Router.post('/update',(req,res)=>{
+  const userId = req.cookies.userId
+  if (!userId) {
+    return res.json({code:1})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userId,body,(e,d)=>{
+    const data = Object.assign({},{
+      user:d.user,
+      type:d.type
+    },body)
+    return res.json({code:0,data})
   })
 })
 Router.post('/register',(req,res)=>{
