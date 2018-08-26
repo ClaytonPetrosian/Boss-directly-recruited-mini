@@ -39,22 +39,3 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'));
-//   //
-// <Route path='/geniusboss' component={GeniusInfo}></Route>
-  // <Route path='/qbl' component={QBL}></Route>
-  // <Route path='/:location' component={Test}></Route>
-  // function Erying(){
-  //   return <h2>二营！</h2>
-  // }
-  // function QBL(){
-  //   return <h2>骑兵连!</h2>
-  // }
-  // class Test extends React.Component {
-  //   constructor(props) {
-  //     super(props)
-  //   }
-  //   render(){
-  //     console.log(this.props);
-  //     return <h2>测试组件{this.props.match.params.location}</h2>
-  //   }
-  // }

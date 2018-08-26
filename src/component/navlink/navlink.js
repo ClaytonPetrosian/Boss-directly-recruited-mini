@@ -21,7 +21,7 @@ class NavLinkBar extends React.Component{
     const navList = this.props.data.filter(v=>!v.hide)
     const {pathname} = this.props.location
     return (
-      <TabBar>
+      <TabBar >
         {navList.map(v=>(
           <TabBar.Item
             key={v.path}
