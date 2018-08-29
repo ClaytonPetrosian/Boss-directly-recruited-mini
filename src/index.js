@@ -15,11 +15,11 @@ import Register from './container/register/register'
 import AuthRoute from './component/authroute/authroute'
 import Dashboard from './component/dashboard/dashboard'
 import './index.css'
+import Chat from './component/chat/chat'
 
-const reduxDevtools=window.devToolsExtension?window.devToolsExtension:()=>{}
 const store = createStore(reducers,compose(
   applyMiddleware(thunk),
-  reduxDevtools()
+  window.devToolsExtension?window.devToolsExtension():f=>f
 ))
 
 ReactDOM.render(
@@ -32,6 +32,7 @@ ReactDOM.render(
           <Route path='/geniusinfo' component={GeniusInfo}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
+          <Route path='/chat/:user' component={Chat}></Route>
           <Route component={Dashboard}></Route>
         </Switch>
 

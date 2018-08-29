@@ -6,20 +6,26 @@ mongoose.connect(DB_URL)
 
 const models = {
 	user:{
-		'user':{type:String, 'require':true},
-		'pwd':{type:String, 'require':true},
-		'type':{'type':String, 'require':true},
+		'user':{type:String, require:true},
+		'pwd':{type:String, require:true},
+		'type':{type:String, require:true},
 		//头像
-		'avatar':{'type':String},
+		'avatar':{type:String},
 		// 个人简介或者职位简介
-		'desc':{'type':String},
+		'desc':{type:String},
 		// 职位名
-		'title':{'type':String},
+		'title':{type:String},
 		// 如果你是boss 还有两个字段
-		'company':{'type':String},
-		'money':{'type':String}
+		'company':{type:String},
+		'money':{type:String}
 	},
 	chat:{
+		'chatid':{type:String,require:true},
+		'from':{type:String,require:true},
+		'to':{type:String,require:true},
+		'read':{type:Boolean,require:false},
+		'content':{type:String,require:true,default:''},
+		'createTime':{type:Number,default:Date.now}
 	}
 }
 

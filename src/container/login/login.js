@@ -4,12 +4,13 @@ import { List, InputItem, WhiteSpace,WingBlank,Button } from 'antd-mobile';
 import {login} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-
+import handleForm from '../../component/handle-form/handle-form'
 
 @connect(
   state=>state.user,
   {login}
 )
+@handleForm
 class  Login extends React.Component{
   constructor(props){
     super(props)
@@ -23,13 +24,8 @@ class  Login extends React.Component{
   register(){
     this.props.history.push('/register')
   }
-  handleChange(key,val){
-      this.setState({
-        [key]:val
-      })
-  }
   handleLogin(){
-    this.props.login(this.state)
+    this.props.login(this.props.state)
   }
   render(){
     return(
@@ -39,8 +35,8 @@ class  Login extends React.Component{
         <WingBlank>
           <List>
             {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
-            <InputItem onChange={v=>this.handleChange('user',v)}>用户</InputItem>
-            <InputItem onChange={v=>this.handleChange('pwd',v)} type='password'>密码</InputItem>
+            <InputItem onChange={v=>this.props.handleChange('user',v)}>用户</InputItem>
+            <InputItem onChange={v=>this.props.handleChange('pwd',v)} type='password'>密码</InputItem>
           </List>
           <WhiteSpace />
           <Button type='primary' onClick={this.handleLogin}>登陆</Button>
