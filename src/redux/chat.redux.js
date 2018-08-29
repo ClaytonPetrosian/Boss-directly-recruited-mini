@@ -61,9 +61,6 @@ export function readMsg(from){
           dispatch(msgRead({userid,from,num:res.data.num}))
         }
       })
-      .catch(e=>{
-        console.log(e.response);
-      })
   }
 }
 export function getMsgList(){
