@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Result, List,Brief,WhiteSpace,Modal} from 'antd-mobile'
+import {Result, List,WhiteSpace,Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'
 import {logoutSubmit} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
@@ -28,7 +28,6 @@ class User extends React.Component{
 		const props = this.props
 		const Item = List.Item
 		const Brief = Item.Brief
-		console.log(props)
 		return props.user?(
 			<div>
 				<Result

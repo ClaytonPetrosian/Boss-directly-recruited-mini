@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../component/logo/logo'
-import { List, Radio, Flex, WhiteSpace,WingBlank,Button,InputItem } from 'antd-mobile';
+import { List, Radio, WhiteSpace,Button,InputItem } from 'antd-mobile';
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {register} from '../../redux/user.redux'

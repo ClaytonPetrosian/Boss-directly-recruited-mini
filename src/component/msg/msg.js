@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {WhiteSpace,WingBlank,List,Badge} from 'antd-mobile'
+import {List,Badge} from 'antd-mobile'
 
 @connect(
 	state=>state

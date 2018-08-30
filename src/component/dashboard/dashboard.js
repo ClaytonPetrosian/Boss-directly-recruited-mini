@@ -7,7 +7,7 @@ import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import Msg from '../msg/msg'
 import User from '../user/user'
-import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
+import {getMsgList,recvMsg} from '../../redux/chat.redux'
 
 
 

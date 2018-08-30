@@ -116,7 +116,16 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "eqeqeq": [
+        0
+      ],
+      "no-unused-vars": [0],
+      "jsx-a11y/accessible-emoji": [
+        0
+      ]
+    }
   },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0"
