@@ -29,10 +29,20 @@ Router.get('/getmsglist',(req,res)=>{
 	})
 
 })
+Router.post('/resetpwd',(req,res)=>{
+	const {user} = req.body
+	User.findByIdAndUpdate(user,function(err,doc){
+		const data = Object.assign({},{
+			user:doc.user,
+			type:doc.type
+		},body)
+		return res.json({code:0,data})
+	})
+})
 Router.post('/update',function(req,res){
 	const userid = req.cookies.userid
 	if (!userid) {
-		return json.dumps({code:1})
+		return res.json({code:1})
 	}
 	const body = req.body
 	User.findByIdAndUpdate(userid,body,function(err,doc){
@@ -59,7 +69,6 @@ Router.post('/register', function(req, res){
 		if (doc) {
 			return res.json({code:1,msg:'用户名重复'})
 		}
-
 		const userModel = new User({user,type,pwd:md5Pwd(pwd)})
 		userModel.save(function(e,d){
 			if (e) {

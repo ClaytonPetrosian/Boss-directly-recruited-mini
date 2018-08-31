@@ -6,6 +6,7 @@
     "antd-mobile": "^2.2.0-beta.1",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -41,6 +42,7 @@
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
     "raf": "3.4.0",
+    "rc-queue-anim": "^1.6.5",
     "react": "^16.4.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.2",
@@ -63,7 +65,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "server_bak": "node server/server.js",
+    "server":"NODE_ENV=test nodemon --exec babel-node server/server.js"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -121,7 +125,9 @@
       "eqeqeq": [
         0
       ],
-      "no-unused-vars": [0],
+      "no-unused-vars": [
+        0
+      ],
       "jsx-a11y/accessible-emoji": [
         0
       ]

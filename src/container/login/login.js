@@ -1,14 +1,14 @@
 import React from 'react'
 import Logo from '../../component/logo/logo'
 import { List, InputItem, WhiteSpace,WingBlank,Button } from 'antd-mobile';
-import {login} from '../../redux/user.redux'
+import {login,resetpwd} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import handleForm from '../../component/handle-form/handle-form'
 
 @connect(
   state=>state.user,
-  {login}
+  {login,resetpwd}
 )
 @handleForm
 class  Login extends React.Component{

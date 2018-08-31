@@ -6,6 +6,8 @@ const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const LOGOUT = 'LOGOUT'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
+const RESET_SUCCESS = 'RESET_SUCCESS'
+
 const initState={
 	redirectTo:'',
 	msg:'',
@@ -23,6 +25,8 @@ export function user(state=initState, action){
 			return {...state, isAuth:false, msg:action.msg}
 		case LOGOUT:
 			return {...initState,redirectTo:'/login'}
+		case RESET_SUCCESS:
+			return {...initState}
 		default:
 			return state
 	}
@@ -36,7 +40,9 @@ function authSuccess(obj){
 function errorMsg(msg){
 	return { msg, type:ERROR_MSG }
 }
-
+function resetSuccess(msg){
+	return { msg, type:RESET_SUCCESS}
+}
 export function loadData(userinfo){
 	return { type:LOAD_DATA, payload:userinfo}
 }
@@ -69,10 +75,22 @@ export function login({user,pwd}){
 				}
 			})
 	}
-
-
 }
-
+export function resetpwd({user}){
+	if (!user) {
+		return errorMsg('用户名必须输入')
+	}
+	return dispatch=>{
+		axios.post('/user/resetpwd',{user})
+			.then(res=>{
+				if (res.status==200&&res.data.code===0) {
+					dispatch(resetSuccess(res.data.msg))
+				}else{
+					dispatch(errorMsg(res.data.msg))
+				}
+			})
+	}
+}
 export function register({user,pwd,repeatpwd,type}){
 	if (!user||!pwd||!type) {
 		return errorMsg('用户名密码必须输入')
