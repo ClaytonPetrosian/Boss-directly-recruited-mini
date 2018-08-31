@@ -22,6 +22,9 @@
 #user-card{
 	padding-bottom: 80px;
 }
+#user-card .user-card-item{
+	margin-bottom: 10px;
+}
 #chat-page .chat-me .am-list-extra{
 	flex-basis: auto;
 }

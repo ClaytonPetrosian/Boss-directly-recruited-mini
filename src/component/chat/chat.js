@@ -3,6 +3,7 @@ import {List,InputItem,NavBar,Icon,Grid} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {getMsgList,sendMsg,recvMsg,readMsg} from '../../redux/chat.redux'
 import {getChatId} from '../../util'
+import QueueAnim from 'rc-queue-anim'
 
 @connect(
   state=>state,
@@ -60,28 +61,30 @@ class Chat extends React.Component {
         >
           {users[userid].name}
         </NavBar>
+        <QueueAnim delay={100}>
+          {chatmsgs.map(v=>{
+            const avatar = require(`../img/${users[v.from].avatar}.png`);
+            return v.from==userid?(
+              <List key={v._id}>
+                <Item
+                  thumb={avatar}
+                  >
+                  {v.content}
+                </Item>
+              </List>
+            ):(
+              <List key={v._id}>
+                <Item
+                  className='chat-me'
+                  extra={<img src={avatar} alt={users[v.from].avatar}></img>}
+                  >
+                  {v.content}
+                </Item>
+              </List>
+            )
+          })}
+        </QueueAnim>
 
-        {chatmsgs.map(v=>{
-          const avatar = require(`../img/${users[v.from].avatar}.png`);
-          return v.from==userid?(
-            <List key={v._id}>
-              <Item
-                thumb={avatar}
-                >
-                {v.content}
-              </Item>
-            </List>
-          ):(
-            <List key={v._id}>
-              <Item
-                className='chat-me'
-                extra={<img src={avatar} alt={users[v.from].avatar}></img>}
-                >
-                {v.content}
-              </Item>
-            </List>
-          )
-        })}
         <div className='stick-footer'>
           <List>
             <InputItem
@@ -116,7 +119,6 @@ class Chat extends React.Component {
               this.setState({
                 text:this.state.text+el.text
               })
-              console.log(el)
             }}
             hasLine={false}
           />:null}

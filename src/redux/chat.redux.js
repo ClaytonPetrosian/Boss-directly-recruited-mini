@@ -23,7 +23,7 @@ export function chat(state=initState,action){
       const {from,num}=action.payload
       return {...state,
         chatmsg:state.chatmsg.map(v=>({...v,read:from==v.from?true:v.read})),
-        unread:state.unread-num}
+        unread:(state.unread-num)>0?(state.unread-num):0}
     default:
       return state
   }
@@ -42,7 +42,6 @@ export function recvMsg(data){
   return (dispatch,getState)=>{
     socket.on('recvMsg',(data)=>{
       const userid = getState().user._id
-      console.log('recvMsg',data);
       dispatch(msgRecv(data,userid))
     })
   }

@@ -8,7 +8,7 @@ import Genius from '../genius/genius'
 import Msg from '../msg/msg'
 import User from '../user/user'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
-
+import QueueAnim from 'rc-queue-anim'
 
 
 @connect(
@@ -58,22 +58,20 @@ class Dashboard extends React.Component{
 			}
 		]
 
-
-		return (
+		const page = navList.find(v=>v.path==pathname)
+		return page?(
 			<div>
 				<NavBar className='fixd-header' mode='dard'>{navList.find(v=>v.path==pathname)?navList.find(v=>v.path==pathname).title:null}</NavBar>
 				<div >
-						<Switch>
-							{navList.map(v=>(
-								<Route key={v.path} path={v.path} component={v.component}></Route>
-							))}
-						</Switch>
+					<QueueAnim type='scaleX' duration={800}>
+						<Route key={page.path} path={page.path} component={page.component}></Route>
+					</QueueAnim>
 				</div>
 
 				<NavLinkBar data={navList}></NavLinkBar>
 
 			</div>
-		)
+		):null
 
 
 	}
