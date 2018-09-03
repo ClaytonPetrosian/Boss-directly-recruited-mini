@@ -1,14 +1,22 @@
-import expres from 'express'
+import express from 'express'
 import bodyParser  from 'body-parser'
 import cookieParser  from 'cookie-parser'
 import model  from './model'
 import path  from 'path'
+import csshook from 'css-modules-require-hook/preset'
+import assethook from 'asset-require-hook'
+assethook({
+  extensions: ['png']
+})
+
+
 import React from 'react'
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import {StaticRouter} from 'react-router-dom'
 import App from '../src/app'
+import reducers from '../src/reducer'
 
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
@@ -45,13 +53,18 @@ app.use((req,res,next)=>{
   const store = createStore(reducers,compose(
     applyMiddleware(thunk)
   ))
+  let context = {}
   const markup = renderToString(
     <Provider store={store}>
-      <StaticRouter>
+      <StaticRouter
+        location= {req.url}
+        context = {context}
+        >
         <App></App>
       </StaticRouter>
     </Provider>)
-  return res.sendFile(path.resolve('build/index.html'))
+  const htmlRes = (<App></App>)
+  return res.send(htmlRes)
 })
 app.use('/',express.static(path.resolve('build')))
 server.listen(9093,()=>{console.log('nodeApp')})

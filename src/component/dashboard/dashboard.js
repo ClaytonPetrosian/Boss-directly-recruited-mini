@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route,Redirect} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
@@ -61,7 +61,7 @@ class Dashboard extends React.Component{
 		const page = navList.find(v=>v.path==pathname)
 		return page?(
 			<div>
-				<NavBar className='fixd-header' mode='dard'>{navList.find(v=>v.path==pathname)?navList.find(v=>v.path==pathname).title:null}</NavBar>
+				<NavBar className='fixd-header' mode='dard'>{page?page.title:null}</NavBar>
 				<div >
 					<QueueAnim type='scaleX' duration={800}>
 						<Route key={page.path} path={page.path} component={page.component}></Route>
@@ -71,7 +71,7 @@ class Dashboard extends React.Component{
 				<NavLinkBar data={navList}></NavLinkBar>
 
 			</div>
-		):null
+		):<Redirect to='/msg'></Redirect>
 
 
 	}
