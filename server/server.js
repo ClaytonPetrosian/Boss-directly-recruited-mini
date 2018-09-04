@@ -14,11 +14,9 @@ const userRouter= require('./user');
 io.on('connection',(soc)=>{
   console.log('login!!');
   soc.on('sendMsg',(data)=>{
-    console.log(data);
     const {from,to,msg} = data
     const chatid = [from,to].sort().join('_')
     Chat.create({chatid,from,to,content:msg},(err,doc)=>{
-      console.log(doc._doc.createTime);
       io.emit('recvMsg',Object.assign({},doc._doc))
     })
   })
@@ -30,4 +28,4 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 app.use('/user',userRouter)
 
-server.listen(9093,()=>{console.log('nodeApp')})
+server.listen(9093,()=>{console.log('!!')})

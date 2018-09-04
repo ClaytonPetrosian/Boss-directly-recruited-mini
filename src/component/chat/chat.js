@@ -65,7 +65,7 @@ class Chat extends React.Component {
           {chatmsgs.map(v=>{
             const avatar = require(`../img/${users[v.from].avatar}.png`);
             return v.from==userid?(
-              <List key={v._id}>
+              <List key={v.createTime}>
                 <Item
                   thumb={avatar}
                   >
@@ -73,7 +73,7 @@ class Chat extends React.Component {
                 </Item>
               </List>
             ):(
-              <List key={v._id}>
+              <List key={v.createTime}>
                 <Item
                   className='chat-me'
                   extra={<img src={avatar} alt={users[v.from].avatar}></img>}

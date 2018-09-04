@@ -15,7 +15,7 @@ const models = {
 		'desc':{type:String},
 		// 职位名
 		'title':{type:String},
-		// 如果你是boss 还有两个字段
+		//boss的话 还有两个字段
 		'company':{type:String},
 		'money':{type:String}
 	},

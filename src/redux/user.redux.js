@@ -18,7 +18,7 @@ export function user(state=initState, action){
 		case AUTH_SUCCESS:
 			return {...state, msg:'',redirectTo:getRedirectPath(action.payload),...action.payload}
 		case LOAD_DATA:
-			return {...state, ...action.payload}
+			return {...state,redirectTo:getRedirectPath(action.payload), ...action.payload}
 		case ERROR_MSG:
 			return {...state, isAuth:false, msg:action.msg}
 		case LOGOUT:
