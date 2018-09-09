@@ -6,7 +6,7 @@ const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
 const _filter = {'pwd':0,'__v':0}
-// Chat.remove({},(e,d)=>{})
+ // Chat.remove({},(e,d)=>{})
 Router.get('/list',function(req, res){
 	const { type } = req.query
 	// User.remove({},function(e,d){})
@@ -72,16 +72,13 @@ Router.post('/register', function(req, res){
 	})
 })
 Router.post('/readmsg', function(req, res){
-	console.log(111);
 	const userid = req.cookies.userid
 	const {from} = req.body
-	console.log(userid,from);
 	Chat.update(
 		{from,to:userid},
 		{'$set':{read:true}},
 		{'multi':true},
 		(e,d)=>{
-			console.log(d);
 			if (!e) {
 				return res.json({code:0,num:d.nModified})
 		}
@@ -108,7 +105,7 @@ Router.get('/info',function(req, res){
 })
 
 function md5Pwd(pwd){
-	const salt = 'imooc_is_good_3957x8yza6!@#IUHJh~~'
+	const salt = 'sdsds!@#IUHJh~~'
 	return utils.md5(utils.md5(pwd+salt))
 }
 

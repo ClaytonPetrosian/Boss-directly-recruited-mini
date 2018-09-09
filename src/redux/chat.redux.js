@@ -18,6 +18,9 @@ export function chat(state=initState,action){
       return {...state,users:action.payload.users,chatmsg:action.payload.msgs,unread:action.payload.msgs.filter(v=>!v.read&&v.to==action.payload.userid).length}
     case MSG_RECV:
       const n = action.payload.to==action.userid?1:0
+      if (state.chatmsg.indexOf(action.payload)>-1) {
+        return {...state,chatmsg:[...state.chatmsg],unread:state.unread+n}
+      }
       return {...state,chatmsg:[...state.chatmsg,action.payload],unread:state.unread+n}
     case MSG_READ:
       const {from,num}=action.payload
@@ -38,7 +41,7 @@ function msgRecv(msg,userid){
 function msgRead({from,userid,num}){
   return {type:MSG_READ,payload:{from,userid,num}}
 }
-export function recvMsg(data){
+export function recvMsg(){
   return (dispatch,getState)=>{
     socket.on('recvMsg',(data)=>{
       const userid = getState().user._id

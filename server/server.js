@@ -12,7 +12,6 @@ const io = require('socket.io')(server);
 const userRouter= require('./user');
 
 io.on('connection',(soc)=>{
-  console.log('login!!');
   soc.on('sendMsg',(data)=>{
     const {from,to,msg} = data
     const chatid = [from,to].sort().join('_')
@@ -28,4 +27,4 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 app.use('/user',userRouter)
 
-server.listen(9093,()=>{console.log('!!')})
+server.listen(9093,()=>{console.log('启动！')})

@@ -63,7 +63,7 @@ class Chat extends React.Component {
         </NavBar>
         <QueueAnim delay={100}>
           {chatmsgs.map(v=>{
-            const avatar = require(`../img/${users[v.from].avatar}.png`);
+            const avatar = require(`../img/${users[v.from].avatar}.png`)||null;
             return v.from==userid?(
               <List key={v.createTime}>
                 <Item
