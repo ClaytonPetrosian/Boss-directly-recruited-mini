@@ -41,7 +41,7 @@ class User extends React.Component{
 						multipleLine
 					>
 						{props.title}
-						{props.desc.split('\n').map(v=><Brief key={v}>{v}</Brief>)}
+						{props.desc.split('\n').map((v,index)=><Brief key={v===''?`v${index}`:v}>{v}</Brief>)}
 						{props.money?<Brief>薪资:{props.money}</Brief>:null}
 					</Item>
 

@@ -32,11 +32,9 @@ class UserCard extends React.Component{
 									<Body>
 										{v.type=='boss'? <div>公司:{v.company}</div> :null}
 										<WhiteSpace></WhiteSpace>
-										{v.desc.split('\n').map(d=>(
-											<div key={d}>{d}</div>
-										))}
+										{v.desc.split('\n').map(d=>(d==''?null:<div key={d}>{d}</div>))}
 										<WhiteSpace></WhiteSpace>
-										{v.type=='boss'? <div>薪资:{v.money}</div> :null}
+										{v.type=='boss'? <div>薪资:{v.salary}</div> :null}
 									</Body>
 								</Card>
 							</div>

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-// 链接mongo 并且使用imooc这个集合
-const DB_URL = 'mongodb://localhost:27017/imooc-chat'
+// 链接mongo 并且使用job这个集合
+const DB_URL = 'mongodb://localhost:27017/job'
 mongoose.connect(DB_URL)
 
 
@@ -17,7 +17,7 @@ const models = {
 		'title':{type:String},
 		//boss的话 还有两个字段
 		'company':{type:String},
-		'money':{type:String}
+		'salary':{type:String}
 	},
 	chat:{
 		'chatid':{type:String,require:true},

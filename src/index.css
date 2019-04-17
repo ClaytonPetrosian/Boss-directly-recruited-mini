@@ -44,9 +44,13 @@
 #chat-page .am-carousel-wrap{
 	background:#fff;
 }
+#chat-page .chatmsgs{
+	margin-bottom: 100px;
+}
+
 .stick-footer{
 	z-index: 10;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
